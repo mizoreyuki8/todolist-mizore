@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+let id_num = 0
 interface Task {
   name: string
   done: boolean
+  id: number
 }
 
 const tasks = ref<Task[]>([
-  { name: '課題を殺す', done: false },
-  { name: '絵を描く', done: false },
-  { name: 'そうじ', done: false }
+  { name: '課題を殺す', done: false, id: 11 },
+  { name: '絵を描く', done: false, id: 12 },
+  { name: 'そうじ', done: false, id: 13 }
 ])
 
 const newTaskName = ref('')
@@ -17,9 +19,11 @@ const addTask = () => {
   if (newTaskName.value == '') return
   tasks.value.push({
     name: newTaskName.value,
-    done: false
+    done: false,
+    id: id_num
   })
   newTaskName.value = ''
+  id_num += 1
 }
 </script>
 
@@ -29,7 +33,7 @@ const addTask = () => {
     <ul>
       <template v-for="task in tasks" :key="task.name">
         <div v-if="task.done == false">
-          <input type="checkbox" id="checkbox-${task.name}" v-model="task.done" />
+          <input type="checkbox" id="tasks.id" v-model="task.done" />
           <label for="checkbox">{{ task.name }}</label>
         </div>
       </template>
