@@ -29,7 +29,7 @@ const addTask = () => {
     <ul>
       <template v-for="task in tasks" :key="task.name">
         <div v-if="task.done == false">
-          <label>{{ task.name }}<input type="checkbox" v-model="task.done" /></label>
+          <label><input type="checkbox" v-model="task.done" />{{ task.name }}</label>
         </div>
       </template>
     </ul>
